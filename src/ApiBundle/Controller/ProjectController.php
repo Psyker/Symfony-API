@@ -2,6 +2,7 @@
 
 namespace ApiBundle\Controller;
 
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpKernel\Exception\BadRequestHttpException;
@@ -12,6 +13,7 @@ class ProjectController extends Controller
 {
     /**
      * @Rest\Get("/projects", name="app_get_projects")
+     * @Method("GET")
      * @return array|JsonResponse
      */
     public function getProjectsAction()
@@ -34,6 +36,7 @@ class ProjectController extends Controller
 
     /**
      * @Rest\Get("/projects/{id}", name="app_get_project", requirements={"id"="\d+"})
+     * @Method("GET")
      * @param int $id
      * @return array|JsonResponse
      */

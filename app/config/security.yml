@@ -20,6 +20,9 @@ security:
         main:
             pattern: ^/api/
             http_basic: true
+            logout:
+                path: /api/logout
+                target: /api/
 
     access_control:
         - { path: ^/api/login$, role: IS_AUTHENTICATED_ANONYMOUSLY }
