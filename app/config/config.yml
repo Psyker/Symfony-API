@@ -94,6 +94,10 @@ fos_rest:
         default_engine: twig
     routing_loader:
         default_format: json
+    exception:
+        messages:
+            Symfony\Component\HttpKernel\Exception\BadRequestHttpException: true
+
 
 jms_serializer:
     metadata:
