@@ -2,6 +2,7 @@
 
 namespace AppBundle\Entity;
 
+use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -49,9 +50,16 @@ class Project
      */
     private $createdAt;
 
+    /**
+     * @var ArrayCollection
+     * @ORM\OneToMany(targetEntity="AppBundle\Entity\Comment", mappedBy="project")
+     */
+    private $comments;
+
     public function __construct()
     {
         $this->createdAt = new \DateTime('now');
+        $this->comments = new ArrayCollection();
     }
 
     /**
@@ -158,5 +166,22 @@ class Project
     public function getCreatedAt()
     {
         return $this->createdAt;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getComments()
+    {
+        return $this->comments;
+    }
+
+    /**
+     * @param $comment
+     * @internal param mixed $comments
+     */
+    public function addComment($comment)
+    {
+        $this->comments[] = $comment ;
     }
 }

@@ -44,7 +44,7 @@ class Comment
 
     /**
      * @var Project
-     * @ORM\ManyToOne(targetEntity="AppBundle\Entity\Project")
+     * @ORM\ManyToOne(targetEntity="AppBundle\Entity\Project", inversedBy="comments")
      */
     private $project;
 
@@ -133,5 +133,21 @@ class Comment
     public function getCreatedAt()
     {
         return $this->createdAt;
+    }
+
+    /**
+     * @return Project
+     */
+    public function getProject()
+    {
+        return $this->project;
+    }
+
+    /**
+     * @param Project $project
+     */
+    public function setProject($project)
+    {
+        $this->project = $project;
     }
 }
