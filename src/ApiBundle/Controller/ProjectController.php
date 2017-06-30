@@ -31,7 +31,7 @@ class ProjectController extends Controller
             ])->setStatusCode($e->getStatusCode());
         }
 
-        return ['projects' => $projects];
+        return $projects;
     }
 
     /**
@@ -59,6 +59,6 @@ class ProjectController extends Controller
             ])->setStatusCode($e->getCode());
         }
 
-        return ['project' => $project];
+        return $project;
     }
 }
