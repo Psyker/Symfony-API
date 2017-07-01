@@ -1,13 +1,63 @@
 <!DOCTYPE html>
 <html>
-    <head>
-        <meta charset="UTF-8" />
-        <title>{% block title %}Welcome!{% endblock %}</title>
-        {% block stylesheets %}{% endblock %}
-        <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}" />
-    </head>
-    <body>
-        {% block body %}{% endblock %}
-        {% block javascripts %}{% endblock %}
-    </body>
+<head>
+    <meta charset="UTF-8"/>
+    <title>{% block title %}API Back-Office | Dashboard{% endblock %}</title>
+    {% block stylesheets %}{% endblock %}
+    <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}"/>
+    <link rel="stylesheet" href="{{ asset('dist/spectre.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('dist/spectre-icons.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('build/global.css') }}">
+</head>
+<body>
+<div class="container">
+    <div class="columns">
+        <div class="column col-2 bg-gray full-height">
+            <header>
+                <div class="panel">
+                    <div class="panel-header centered">
+                        <div class="panel-title mt-5"></div>
+                    </div>
+                </div>
+                <nav class="nav-padding">
+                    <ul class="nav">
+                        <li class="nav-item">
+                            <a href="#">Elements</a>
+                        </li>
+                        <li class="nav-item active">
+                            <a href="#">Layout</a>
+                            <ul class="nav">
+                                <li class="nav-item">
+                                    <a href="#">Flexbox grid</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a href="#">Responsive</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a href="#">Navbar</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a href="#">Empty states</a>
+                                </li>
+                            </ul>
+                        </li>
+                        <li class="nav-item">
+                            <a href="#">Components</a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="#">Utilities</a>
+                        </li>
+                    </ul>
+                </nav>
+            </header>
+        </div>
+        <div class="container container-marging">
+            {% block body %}{% endblock %}
+        </div>
+    </div>
+</div>
+{% block javascripts %}
+{% endblock %}
+<script src="{{ asset('build/app.js') }}"></script>
+</body>
 </html>
