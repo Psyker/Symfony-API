@@ -4,6 +4,7 @@ namespace AppBundle\Entity;
 
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
+use TagBundle\Traits\Taggable;
 
 /**
  * Project
@@ -13,6 +14,9 @@ use Doctrine\ORM\Mapping as ORM;
  */
 class Project
 {
+
+    use Taggable;
+
     /**
      * @var int
      *
@@ -35,13 +39,6 @@ class Project
      * @ORM\Column(name="description", type="text")
      */
     private $description;
-
-    /**
-     * @var string
-     *
-     * @ORM\Column(name="type", type="string", length=255)
-     */
-    private $type;
 
     /**
      * @var \DateTime
@@ -118,30 +115,6 @@ class Project
     public function getDescription()
     {
         return $this->description;
-    }
-
-    /**
-     * Set type
-     *
-     * @param string $type
-     *
-     * @return Project
-     */
-    public function setType($type)
-    {
-        $this->type = $type;
-
-        return $this;
-    }
-
-    /**
-     * Get type
-     *
-     * @return string
-     */
-    public function getType()
-    {
-        return $this->type;
     }
 
     /**

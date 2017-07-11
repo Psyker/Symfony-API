@@ -8,6 +8,7 @@ use AppBundle\Entity\Project;
 use Doctrine\Common\DataFixtures\AbstractFixture;
 use Doctrine\Common\DataFixtures\FixtureInterface;
 use Doctrine\Common\Persistence\ObjectManager;
+use TagBundle\Entity\Tag;
 
 class LoadProjectsData extends AbstractFixture implements FixtureInterface
 {
@@ -15,8 +16,8 @@ class LoadProjectsData extends AbstractFixture implements FixtureInterface
     public function getProjects()
     {
         return [
-            ['Projet1', 'Je suis un beau projet.', 'PHP'],
-            ['Projet2', 'Je suis un autre beau projet', 'React']
+            ['Projet1', 'Je suis un beau projet.', ['PHP']],
+            ['Projet2', 'Je suis un autre beau projet', ['React']]
         ];
     }
 
@@ -27,14 +28,20 @@ class LoadProjectsData extends AbstractFixture implements FixtureInterface
      */
     public function load(ObjectManager $manager)
     {
-        foreach ($this->getProjects() as $key => $project) {
+        foreach ($this->getProjects() as $key => $projectData) {
             $project = (new Project())
-                ->setTitle($project[0])
-                ->setDescription($project[1])
-                ->setType($project[2]);
+                ->setTitle($projectData[0])
+                ->setDescription($projectData[1]);
+            foreach ($projectData[2] as $tagName) {
+                $tag = new Tag();
+                $tag->setName($tagName);
+                $manager->persist($tag);
+                $project->addTag($tag);
+            }
             $this->addReference('project'.$key, $project);
             $manager->persist($project);
         }
         $manager->flush();
     }
+
 }
