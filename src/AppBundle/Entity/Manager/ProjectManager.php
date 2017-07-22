@@ -2,7 +2,6 @@
 
 namespace AppBundle\Entity\Manager;
 
-
 use AppBundle\Entity\Project;
 use AppBundle\Interfaces\ProjectManagerInterface;
 use Symfony\Component\Routing\Exception\ResourceNotFoundException;
@@ -12,11 +11,11 @@ class ProjectManager extends AbstractManager implements ProjectManagerInterface
 
     /**
      * @param int $projectId
-     * @return Object
-     * @throws ResourceNotFoundException
+     * @return Project
      */
-    public function findProject(int $projectId): Object
+    public function findProject(int $projectId): Project
     {
+        /** @var Project $project */
         $project = $this->getRepository()->find($projectId);
 
         if (null == $project) {
@@ -31,7 +30,9 @@ class ProjectManager extends AbstractManager implements ProjectManagerInterface
      */
     public function fetchProjects(): array
     {
-        // TODO: Implement fetchProjects() method.
+        $projects = $this->getRepository()->findAll();
+
+        return $projects;
     }
 
     /**
@@ -40,7 +41,9 @@ class ProjectManager extends AbstractManager implements ProjectManagerInterface
      */
     public function updateProject(Project $project): Project
     {
-        // TODO: Implement updateProject() method.
+        $this->persistObject($project);
+
+        return $project;
     }
 
     /**
@@ -49,6 +52,22 @@ class ProjectManager extends AbstractManager implements ProjectManagerInterface
      */
     public function deleteProject(int $projectId): Project
     {
-        // TODO: Implement deleteProject() method.
+        /** @var Project $project */
+        $project = $this->findProject($projectId);
+        $this->removeObject($project);
+
+        return $project;
+    }
+
+    /**
+     * Create a new Project
+     *
+     * @return Project
+     */
+    public function createProject(): Project
+    {
+        $class = $this->getClass();
+
+        return new $class;
     }
 }

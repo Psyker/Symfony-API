@@ -10,9 +10,8 @@ interface ProjectManagerInterface
     /**
      * @param int $projectId
      * @return Project
-     * @throws ResourceNotFoundException
      */
-    public function findProject(int $projectId): Object;
+    public function findProject(int $projectId): Project;
 
     /**
      * @return array
@@ -30,4 +29,9 @@ interface ProjectManagerInterface
      * @return Project
      */
     public function deleteProject(int $projectId): Project;
+
+    /**
+     * @return Project
+     */
+    public function createProject(): Project;
 }
