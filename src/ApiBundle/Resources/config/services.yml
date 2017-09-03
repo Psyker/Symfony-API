@@ -4,3 +4,8 @@ services:
         arguments:
             - AppBundle\Entity\Project
             - '@doctrine.orm.entity_manager'
+    api.manager.comment:
+        class: AppBundle\Entity\Manager\CommentManager
+        arguments:
+            - AppBundle\Entity\Comment
+            - '@doctrine.orm.entity_manager'

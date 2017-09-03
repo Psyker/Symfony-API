@@ -3,6 +3,7 @@
 namespace ApiBundle\Controller;
 
 use AppBundle\Entity\Comment;
+use AppBundle\Form\CommentType;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
@@ -11,6 +12,7 @@ use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpKernel\Exception\BadRequestHttpException;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
+use Symfony\Component\Translation\Exception\NotFoundResourceException;
 
 class CommentController extends Controller
 {
@@ -18,24 +20,26 @@ class CommentController extends Controller
      * @Rest\Post("/comments/new", name="app_post_comment")
      * @Method("POST")
      * @param Request $request
-     * @return Comment
+     * @return Comment|JsonResponse
      */
     public function postCommentAction(Request $request)
     {
-        $em = $this->getDoctrine()->getManager();
-        if (!empty($request->get('author'))
-            && !empty($request->get('message'))
-            && !empty($request->get('project'))
-        ) {
-            $project = $em->getRepository('AppBundle:Project')->find($request->get('project'));
-            $comment = new Comment();
-            $comment->setAuthor($request->get('author'))
-                ->setMessage($request->get('message'))
-                ->setProject($project);
-            $em->persist($comment);
-            $em->flush();
 
-            return $comment;
-        }
+        /** @var Comment $comment */
+        $comment = $this->getCommentManager()->newComment();
+        $form = $this->createForm(CommentType::class, $comment);
+        $commentManager = $this->getCommentManager();
+
+        $form->handleRequest($request);
+
+        $commentManager->createComment($comment, true);
+
+        return $comment;
+
+    }
+
+    private function getCommentManager()
+    {
+        return $this->get('api.manager.comment');
     }
 }

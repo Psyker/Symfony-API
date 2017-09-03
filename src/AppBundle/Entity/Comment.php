@@ -24,14 +24,14 @@ class Comment
     /**
      * @var string
      *
-     * @ORM\Column(name="author", type="string", length=255, unique=true)
+     * @ORM\Column(name="author", type="string", length=255, unique=true, nullable=false)
      */
     private $author;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="message", type="text")
+     * @ORM\Column(name="message", type="text", nullable=false)
      */
     private $message;
 
@@ -45,6 +45,7 @@ class Comment
     /**
      * @var Project
      * @ORM\ManyToOne(targetEntity="AppBundle\Entity\Project", inversedBy="comments")
+     * @ORM\JoinColumn(nullable=false)
      */
     private $project;
 
