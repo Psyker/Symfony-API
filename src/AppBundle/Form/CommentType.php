@@ -32,7 +32,8 @@ class CommentType extends AbstractType
     public function configureOptions(OptionsResolver $resolver)
     {
         $resolver->setDefaults(array(
-            'data_class' => 'AppBundle\Entity\Comment'
+            'data_class' => 'AppBundle\Entity\Comment',
+            'csrf_protection' => false
         ));
     }
 
@@ -43,6 +44,4 @@ class CommentType extends AbstractType
     {
         return 'appbundle_comment';
     }
-
-
 }

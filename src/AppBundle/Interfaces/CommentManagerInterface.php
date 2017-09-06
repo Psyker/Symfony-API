@@ -6,7 +6,6 @@ use AppBundle\Entity\Comment;
 
 interface CommentManagerInterface
 {
-
     /**
      * Create a new comment.
      * @param Comment $comment
@@ -19,4 +18,11 @@ interface CommentManagerInterface
      * @return Comment
      */
     public function newComment(): Comment;
+
+    /**
+     * Remove a comment.
+     * @param Comment $comment
+     * @return Comment
+     */
+    public function removeComment(Comment $comment): Comment;
 }

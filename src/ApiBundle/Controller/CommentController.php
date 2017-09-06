@@ -3,6 +3,7 @@
 namespace ApiBundle\Controller;
 
 use AppBundle\Entity\Comment;
+use AppBundle\Entity\Manager\CommentManager;
 use AppBundle\Form\CommentType;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
@@ -24,20 +25,23 @@ class CommentController extends Controller
      */
     public function postCommentAction(Request $request)
     {
-
         /** @var Comment $comment */
         $comment = $this->getCommentManager()->newComment();
         $form = $this->createForm(CommentType::class, $comment);
         $commentManager = $this->getCommentManager();
 
         $form->handleRequest($request);
-
-        $commentManager->createComment($comment, true);
+        if ($form->isSubmitted() && $form->isValid()) {
+            $commentManager->createComment($comment, true);
+        }
 
         return $comment;
-
     }
 
+    /**
+     * Return the Comment manager.
+     * @return CommentManager
+     */
     private function getCommentManager()
     {
         return $this->get('api.manager.comment');

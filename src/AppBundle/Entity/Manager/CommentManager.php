@@ -7,7 +7,6 @@ use AppBundle\Interfaces\CommentManagerInterface;
 
 class CommentManager extends AbstractManager implements CommentManagerInterface
 {
-
     /**
      * Create a new comment.
      * @param Comment $comment
@@ -30,5 +29,17 @@ class CommentManager extends AbstractManager implements CommentManagerInterface
         $class = $this->getClass();
 
         return new $class;
+    }
+
+    /**
+     * Remove a comment.
+     * @param Comment $comment
+     * @return Comment
+     */
+    public function removeComment(Comment $comment): Comment
+    {
+        $this->removeObject($comment);
+
+        return $comment;
     }
 }
