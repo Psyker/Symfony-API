@@ -36,6 +36,13 @@ class Comment
     private $message;
 
     /**
+     * @var string $avatar
+     *
+     * @ORM\Column(name="avatar", type="string")
+     */
+    private $avatar;
+
+    /**
      * @var \DateTime
      *
      * @ORM\Column(name="createdAt", type="datetime")
@@ -150,5 +157,24 @@ class Comment
     public function setProject($project)
     {
         $this->project = $project;
+    }
+
+    /**
+     * @return string
+     */
+    public function getAvatar()
+    {
+        return $this->avatar;
+    }
+
+    /**
+     * @param string $avatar
+     * @return $this
+     */
+    public function setAvatar(string $avatar)
+    {
+        $this->avatar = $avatar;
+
+        return $this;
     }
 }
