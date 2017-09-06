@@ -1,5 +1,5 @@
 // webpack.config.js
-let Encore = require('@symfony/webpack-encore');
+var Encore = require('@symfony/webpack-encore');
 
 Encore
 // directory where all compiled assets will be stored
@@ -15,7 +15,7 @@ Encore
     .addEntry('app', './assets/js/main.js')
 
     // will output as web/build/global.css
-    .addStyleEntry('global', './assets/css/global.scss')
+    .addStyleEntry('global', './assets/css/*.scss')
 
     // allow sass/scss/less files to be processed
     .enableSassLoader()
