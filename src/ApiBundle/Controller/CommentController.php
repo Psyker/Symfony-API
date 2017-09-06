@@ -6,14 +6,10 @@ use AppBundle\Entity\Comment;
 use AppBundle\Entity\Manager\CommentManager;
 use AppBundle\Form\CommentType;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
-use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use FOS\RestBundle\Controller\Annotations as Rest;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
-use Symfony\Component\HttpKernel\Exception\BadRequestHttpException;
-use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
-use Symfony\Component\Translation\Exception\NotFoundResourceException;
 
 class CommentController extends Controller
 {
@@ -22,7 +18,7 @@ class CommentController extends Controller
      * @Method("POST")
      * @param Request $request
      * @return Comment|JsonResponse
-     */
+   */
     public function postCommentAction(Request $request)
     {
         /** @var Comment $comment */

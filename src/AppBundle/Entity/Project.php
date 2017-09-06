@@ -50,6 +50,7 @@ class Project
     /**
      * @var ArrayCollection
      * @ORM\OneToMany(targetEntity="AppBundle\Entity\Comment", mappedBy="project")
+     * @ORM\OrderBy({"createdAt" = "DESC"})
      */
     private $comments;
 
