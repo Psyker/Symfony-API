@@ -11,7 +11,7 @@ front:
 admin:
     resource: "@AppBundle/Controller/Admin"
     type: rest
-    prefix: /api/admin
+    prefix: /api/admin/
 
 fos_user:
     resource: "@FOSUserBundle/Resources/config/routing/all.xml"

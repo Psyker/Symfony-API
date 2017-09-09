@@ -18,7 +18,7 @@ security:
             security: false
 
         main:
-            pattern: ^/api/admin
+            pattern: ^/api/admin/
             http_basic: true
             logout:
                 path: /api/logout
