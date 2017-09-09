@@ -3,14 +3,14 @@ tag:
     type:     annotation
     prefix:   /
 
-api:
-    resource: "@ApiBundle/Controller/"
+front:
+    resource: "@AppBundle/Controller/Front"
     type:     rest
     prefix:   /api
 
-app:
-    resource: '@AppBundle/Controller/'
-    type: annotation
+admin:
+    resource: "@AppBundle/Controller/Admin"
+    type: rest
     prefix: /api/admin
 
 fos_user:

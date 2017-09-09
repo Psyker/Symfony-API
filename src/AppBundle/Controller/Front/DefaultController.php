@@ -1,6 +1,6 @@
 <?php
 
-namespace ApiBundle\Controller;
+namespace AppBundle\Controller\Front;
 
 use FOS\RestBundle\Controller\Annotations as Rest;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
@@ -15,7 +15,7 @@ class DefaultController extends Controller
     public function getUsersAction()
     {
         try {
-            $users = $this->getDoctrine()->getManager()->getRepository('ApiBundle:User')->findAll();
+            $users = $this->getDoctrine()->getManager()->getRepository('AppBundle:User')->findAll();
             if (empty($users)) {
                 throw new NotFoundHttpException("There is nos users");
             }

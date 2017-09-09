@@ -1,6 +1,6 @@
 <?php
 
-namespace ApiBundle\Controller;
+namespace AppBundle\Controller\Front;
 
 use AppBundle\Entity\Comment;
 use AppBundle\Entity\Manager\CommentManager;

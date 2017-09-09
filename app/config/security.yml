@@ -18,7 +18,7 @@ security:
             security: false
 
         main:
-            pattern: ^/api/
+            pattern: ^/api/admin
             http_basic: true
             logout:
                 path: /api/logout
@@ -26,5 +26,5 @@ security:
 
     access_control:
         - { path: ^/api/login$, role: IS_AUTHENTICATED_ANONYMOUSLY }
-        - { path: ^/api/, role: ROLE_SUPER_ADMIN }
+        - { path: ^/api/, role: IS_AUTHENTICATED_ANONYMOUSLY }
         - { path: ^/api/admin/, role: ROLE_SUPER_ADMIN }

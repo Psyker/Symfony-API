@@ -1,6 +1,6 @@
 <?php
 
-namespace ApiBundle\Controller;
+namespace AppBundle\Controller\Front;
 
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
@@ -9,6 +9,7 @@ use FOS\RestBundle\Controller\Annotations as Rest;
 
 class ProjectController extends Controller
 {
+
     /**
      * @Rest\Get("/projects", name="app_get_projects")
      * @Method("GET")
