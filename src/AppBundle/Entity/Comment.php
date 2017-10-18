@@ -24,7 +24,7 @@ class Comment
     /**
      * @var string
      *
-     * @ORM\Column(name="author", type="string", length=255, unique=true, nullable=false)
+     * @ORM\Column(name="author", type="string", length=255, unique=false, nullable=false)
      */
     private $author;
 
